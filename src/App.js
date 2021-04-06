@@ -1,24 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-const {app} = window.require('electron').remote;
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>React + Electron = <span role="img" aria-label="love">😍</span></h2>
-        </div>
-        <p className="App-intro">
-          <b> Release 0.2.7 </b>
-          Version: {app.getVersion()}
-        </p>
-      </div>
-    );
-  }
-}
+import React from "react";
+import Routes from "./router/Routes";
+
+import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
+
+const App = ({ store, persistor }) => {
+  return (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Routes />
+      </PersistGate>
+    </Provider>
+  );
+};
 
 export default App;
